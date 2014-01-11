@@ -178,6 +178,10 @@ const int const lineCharCnt[3] = {10, 9, 7};
         }
         absW = sqrt(absW);
         
+        if(absU == 0 || absW == 0) {
+            continue;
+        }
+
         double std = xproduct / (absU * absW);
         
         if (std - EqualThresh > maxLikely) {
