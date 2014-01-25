@@ -1,6 +1,32 @@
-Introduction
-===
+# CrzInput: Spelling Correction with Gesture
+
+### Introduction
 <em>crzinput</em> is an experimental English typing software on IOS. It can correct the user's input somewhat like [Fleksy](https://www.fleksy.com) does. The algorithm inside the project is simple and still distant from production. 
+
+### The Algorithm
+The algorithm inside crzinput is very simple. In sum, it takes the vector formed by user input on keyboard layout and compare it with the vectors in the predefined dictionary. Then the algorithms tries to find the dictionary word that is clostest to the input vector. To be more specific, the two vectors are normalized, and then we calculate the product of the two vectors. The closer their product is to 1, the more similar the twoe vectors are.
+
+For example, after user typed "dog" on the keyboard, there will be two 2-D vectors, one is d->o and the other is o->g. The d->o vector, V1 is represented by (Xv1, Yv1) and the o->g vector, V2, is represented by (Xv2, Yv2). Thus, combining the two vectors into one, (Xv1, Yv1, Xv2, Yv2), we can represents the user input in only one vector. This solution is low complexity and practical. And the effect is similar to [Flesky][fl].
+
+### Limitations
+The algorithm compares the input word only with dictionary words with same length, that is, it cannot do something like word completing. Apple, however, features both word completing and correction.
+
+Moreover, calculating normalized product means the algorithm won't take vectors' lengths into consideration, which I think would be helpful in enhancing accuracy.
+
+The other critical problem is when the user input is a zero vector, the algorithm doesn't work because computing product with zero vector will always get zero.
+
+### My Enhancement
+To take both vector length and relative angle into consideration, I propose an algorithm to compute the distance between the vectors, that is |V1-V2|. The closer the distance, the more similar two vectors are.
+
+I also implemented in a python script to compare the result of both algorithms. 
+
+Moreover, considering that most of the time users only miss some characters of the whole typing, my proposed algorithm also take the matched character counts into consideration. The more charactors the user input and the dictionary word match, the more likely users mean the dictionary word.
+
+[See my blogspot][my]
+[cr]:https://github.com/HsiangHoLin/crzinput
+[fl]:http://fleksy.com/
+[my]:http://hsiangholin.github.io/blog/crzinput.html
+
 
 Dictionary
 ===
