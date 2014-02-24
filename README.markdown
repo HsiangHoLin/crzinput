@@ -13,7 +13,7 @@ The algorithm compares the input word only with dictionary words with same lengt
 
 Moreover, calculating normalized product means the algorithm won't take vectors' lengths into consideration, which I think would be helpful in enhancing accuracy.
 
-The other critical problem is when the user input is a zero vector, the algorithm doesn't work because computing product with zero vector will always get zero.
+The other critical problem is that when the user input is a zero vector, the algorithm doesn't work because computing product with zero vector will always get zero.
 
 ### My Enhancement
 To take both vector length and relative angle into consideration, I propose an algorithm to compute the distance between the vectors, that is |V1-V2|. The closer the distance, the more similar two vectors are.
